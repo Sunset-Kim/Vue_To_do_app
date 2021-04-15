@@ -1,9 +1,9 @@
 <template>
   <div>
       <ul>
-        <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow">
-          <i v-on:click="toggleComplete" class="checkBtn fas fa-check"></i>
-          {{todoItem}}
+        <li v-for="(todoItem, index) in todoItems" v-bind:key="index" class="shadow">
+          <i v-on:click="toggleComplete(index)" v-bind:class="{checkBtnCompleted: todoItem.completed}" class="checkBtn fas fa-check"></i>
+          <span v-bind:class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
           <span v-on:click="removeTodo(todoItem, index)" class="removeBtn">
             <i class="fas fa-trash-alt"></i>
           </span>
@@ -26,7 +26,7 @@ export default {
           console.log(localStorage.getItem(localStorage.key(i)));
           console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
 
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))).item);
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
           // this.todoItems.push(localStorage.key(i).item);
         }
         
@@ -39,8 +39,9 @@ export default {
       localStorage.removeItem(todoItem);
       this.todoItems.splice(index, 1);
     },
-    toggleComplete: function(){
-      
+    toggleComplete: function(index){
+      console.log(this.todoItems[0].completed);
+      this.todoItems[index].completed = !this.todoItems[index].completed;
     }
   },
 }
