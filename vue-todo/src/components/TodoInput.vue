@@ -17,11 +17,8 @@ export default {
   methods:{
     addTodo: function () {
       if(this.newTodoitem !== '') {
-        let obj = { completed: false, item: this.newTodoitem };
-
-        // localStorage.setItem(this.newTodoitem, obj); 객체는 저장이 안된다.
-        localStorage.setItem(this.newTodoitem, JSON.stringify(obj));
-
+        // this.$emit('이벤트 이름 작명','인자1','인자2'...)
+        this.$emit('addTodoItem',this.newTodoitem);
         this.clearInput();
       }
       

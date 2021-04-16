@@ -9,8 +9,7 @@
 export default {
   methods: {
     clearAll: function() {
-      console.log('안녕');
-      localStorage.clear();
+      this.$emit('todoAllclear')
     }
   }
 }
