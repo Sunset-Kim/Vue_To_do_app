@@ -8,9 +8,14 @@
 <script>
 export default {
   methods: {
+<<<<<<< Updated upstream
     clearAll: function() {
       console.log('안녕');
       localStorage.clear();
+=======
+    clearAll(){
+      this.$emit('todoAllclear')
+>>>>>>> Stashed changes
     }
   }
 }

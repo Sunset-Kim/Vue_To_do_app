@@ -9,13 +9,19 @@
 
 <script>
 export default {
-  data: function(){
+  data(){
     return {
       newTodoitem: '',
     }
   },
+<<<<<<< Updated upstream
+=======
+  components: {
+    Modal,
+  },
+>>>>>>> Stashed changes
   methods:{
-    addTodo: function () {
+    addTodo () {
       if(this.newTodoitem !== '') {
         let obj = { completed: false, item: this.newTodoitem };
 
@@ -26,7 +32,7 @@ export default {
       }
       
     },
-    clearInput: function() {
+    clearInput() {
       this.newTodoitem = '';
     },
   }
