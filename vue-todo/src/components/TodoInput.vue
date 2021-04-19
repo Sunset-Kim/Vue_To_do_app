@@ -1,33 +1,52 @@
 <template>
   <div class="inputBox shadow">
-      <input type="text" v-model="newTodoitem" v-on:keyup.enter="addTodo">
+      <input ref="input" type="text" v-model="newTodoitem" v-on:keyup.enter="addTodo">
       <span v-on:click="addTodo" class="addContainer">
         <i class="fas fa-plus addBtn"></i>
       </span>
+        <!-- use the modal component, pass in the prop -->
+      <Modal v-if="showModal" @close="showModal = false">
+        <!--
+          you can use custom content here to overwrite
+          default content
+        -->
+        <h3 slot="header">경고창!</h3>
+        <p slot="body">입력값이 없습니다.</p>
+        <p slot="footer">
+          <button @click="showModal = false">종료</button>
+        </p>
+      </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/modal.vue'
+
 export default {
   data: function(){
     return {
+      showModal: false,
       newTodoitem: '',
     }
+  },
+  components: {
+    Modal : Modal,
   },
   methods:{
     addTodo: function () {
       if(this.newTodoitem !== '') {
-        let obj = { completed: false, item: this.newTodoitem };
-
-        // localStorage.setItem(this.newTodoitem, obj); 객체는 저장이 안된다.
-        localStorage.setItem(this.newTodoitem, JSON.stringify(obj));
-
+        // this.$emit('이벤트 이름 작명','인자1','인자2'...)
+        this.$store.commit('addOneItem', this.newTodoitem);
         this.clearInput();
+      } else {
+        this.$refs.input.blur();
+        this.showModal = true;
       }
       
     },
     clearInput: function() {
       this.newTodoitem = '';
+      
     },
   }
 }
