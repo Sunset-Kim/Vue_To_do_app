@@ -9,7 +9,8 @@
 export default {
   methods: {
     clearAll: function() {
-      this.$emit('todoAllclear')
+      this.$store.commit('clearAll');
+      // this.$emit('todoAllclear')
     }
   }
 }

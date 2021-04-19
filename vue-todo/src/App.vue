@@ -3,8 +3,8 @@
     <TodoHeader></TodoHeader>
     <!-- v-on:하위컴포넌트에서 발생시킨 이벤트이름 ="현재컴포넌트의 메소드명" -->
     <TodoInput></TodoInput>
-    <TodoList v-bind:propsdata="todoItems"></TodoList>
-    <TodoFooter v-on:todoAllclear="clearAll"></TodoFooter>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
