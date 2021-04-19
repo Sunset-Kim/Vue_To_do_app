@@ -1,49 +1,30 @@
 <template>
   <div>
-      <ul>
-        <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
+    <transition-group name="list" tag="ul">
+      <!-- <ul> -->
+        <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
           <i v-on:click="toggleComplete(todoItem,index)" v-bind:class="{checkBtnCompleted: todoItem.completed}" class="checkBtn fas fa-check"></i>
           <span v-bind:class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
           <span v-on:click="removeTodo(todoItem, index)" class="removeBtn">
             <i class="fas fa-trash-alt"></i>
           </span>
         </li>
-      </ul>
+      <!-- </ul> -->
+    </transition-group>
+      
   </div>
 </template>
 
 <script>
 export default {
-  data: function() {
-    return {
-      todoItems: []
-    }
-  },
-  created: function() {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          console.log(localStorage.getItem(localStorage.key(i)));
-          console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
-
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-          // this.todoItems.push(localStorage.key(i).item);
-        }
-        
-      }
-    }
-  },
+  props: ['propsdata'],
   methods: {
     removeTodo: function(todoItem, index) {
-      console.log(index);
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+      this.$emit('removeItem', todoItem, index)
+      
     },
     toggleComplete: function(todoItem,index){
-      console.log(this.todoItems[0].completed);
-      this.todoItems[index].completed = !this.todoItems[index].completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit('complete',todoItem, index);
     }
   },
 }
@@ -86,5 +67,12 @@ li {
   color: #de4343;
   cursor: pointer;
 }
-
+/* 리스트 아이템 트랜지션 효과 */
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>
