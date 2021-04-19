@@ -36,7 +36,7 @@ export default {
     addTodo: function () {
       if(this.newTodoitem !== '') {
         // this.$emit('이벤트 이름 작명','인자1','인자2'...)
-        this.$emit('addTodoItem',this.newTodoitem);
+        this.$store.commit('addOneItem', this.newTodoitem);
         this.clearInput();
       } else {
         this.$refs.input.blur();
