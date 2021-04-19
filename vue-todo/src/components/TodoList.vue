@@ -34,6 +34,7 @@ export default {
     }
   },
   methods: {
+<<<<<<< Updated upstream
     removeTodo: function(todoItem, index) {
       console.log(index);
       localStorage.removeItem(todoItem);
@@ -44,6 +45,14 @@ export default {
       this.todoItems[index].completed = !this.todoItems[index].completed;
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+=======
+    removeTodo(todoItem, index) {
+      this.$emit('removeItem', todoItem, index)
+      
+    },
+    toggleComplete(todoItem,index){
+      this.$emit('complete',todoItem, index);
+>>>>>>> Stashed changes
     }
   },
 }
