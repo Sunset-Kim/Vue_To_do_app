@@ -16,17 +16,6 @@ import TodoFooter from './components/TodoFooter.vue';
 
  
 export default {
-  data: function(){
-    return {
-      todoItems: []
-    }
-  },
-  methods: {
-    // clearAll: function() {
-    //   localStorage.clear();
-    //   this.todoItems = [];
-    // }
-  },
   components: {
     // 컴포넌트 태그명 : 컴포넌트 내용
     'TodoHeader': TodoHeader,
