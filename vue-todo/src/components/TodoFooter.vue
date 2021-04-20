@@ -6,12 +6,16 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   methods: {
-    clearAll: function() {
-      this.$store.commit('clearAll');
-      // this.$emit('todoAllclear')
-    }
+    ...mapMutations({
+      clearAll: 'clearAll'
+    }),
+    // clearAll: function() {
+    //   this.$store.commit('clearAll');
+    //   // this.$emit('todoAllclear')
+    // }
   }
 }
 </script>

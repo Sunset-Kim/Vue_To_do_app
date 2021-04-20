@@ -46,7 +46,6 @@ export default {
     },
     clearInput: function() {
       this.newTodoitem = '';
-      
     },
   }
 }
