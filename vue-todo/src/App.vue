@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
+    <!-- v-on:하위컴포넌트에서 발생시킨 이벤트이름 ="현재컴포넌트의 메소드명" -->
     <TodoInput></TodoInput>
     <TodoList></TodoList>
     <TodoFooter></TodoFooter>
